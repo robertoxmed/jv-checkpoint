@@ -6,6 +6,9 @@ public class Message {
 	public final static int CHKPT_APP = 1;
 	public final static int CHKPT_BCKP = 2;
 	public final static int CHKPT_RLBK = 3;
+	public final static int CHKPT_RLBK_ACK = 5;
+	public final static int CHKPT_FAIL = 4;
+	public final static int CHKPT_RLBK_DONE = 6;
 	
 	private int type;
 	private long content;
