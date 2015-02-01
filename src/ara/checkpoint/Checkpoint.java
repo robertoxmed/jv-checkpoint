@@ -1,4 +1,4 @@
-package checkpoint;
+package ara.checkpoint;
 
 /**
  * Un point de sauvegarde tel qu'utilisé dans l'algorithme de Juang-Venkatesan

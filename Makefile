@@ -2,16 +2,24 @@ VER=1.0.4
 
 .PHONY: all run clean doc release
 
-domino:
-	cp -f domino.cfg config_file.cfg
-	make run
-
-random:
-	cp -f random.cfg config_file.cfg
-	make run
-
 all:
 	javac -classpath src:jep-2.3.0.jar:djep-1.0.0.jar `find src -name "*.java"`
+
+etape1:
+	cp -f etape1.cfg config_file.cfg
+	make run
+
+etape2_domino:
+	cp -f etape2_domino.cfg config_file.cfg
+	make run
+
+etape2:
+	cp -f etape2.cfg config_file.cfg
+	make run
+
+etape3:
+	cp -f etape3.cfg config_file.cfg
+	make run
 
 run:
 	java -classpath src:jep-2.3.0.jar:djep-1.0.0.jar peersim/Simulator config_file.cfg

@@ -1,5 +1,6 @@
-package checkpoint;
+package ara.checkpoint;
 
+import ara.Message;
 import peersim.config.Configuration;
 import peersim.core.CommonState;
 import peersim.core.Control;
@@ -8,12 +9,12 @@ import peersim.core.Node;
 import peersim.edsim.EDSimulator;
 
 /**
- * Un contrôleur chargé de crasher un noeud pour provoquer un rollback.
+ * Un contrôleur chargé de provoquer un rollback.
  * 
  * @author Roberto Medina
  * @author Denis Jeanneau
  */
-public class FailController implements Control{
+public class RollbackController implements Control{
 	/** Le pid de la couche protocolaire applicative */
 	private int checkpointPid;
 
@@ -24,7 +25,7 @@ public class FailController implements Control{
 	 * 		la chaîne préfixe permettant d'accéder à la 
 	 * 		configuration du module
 	 */
-	public FailController (String prefix) {
+	public RollbackController (String prefix) {
 		checkpointPid = Configuration.getPid(prefix + ".checkpointProtocolPid");
 	}
 
@@ -38,7 +39,7 @@ public class FailController implements Control{
 			Message failMsg;
 			int victim = CommonState.r.nextInt(Network.size());
 			dest = Network.get(victim);
-			failMsg = new Message(Network.size(), Message.CHKPT_FAIL, 0);
+			failMsg = new Message(Network.size(), CheckpointMessageTypes.CHKPT_FAIL, 0);
 			EDSimulator.add(0, failMsg, dest, checkpointPid);
 		}
 		return false;
